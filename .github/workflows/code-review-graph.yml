@@ -15,3 +15,8 @@ jobs:
       - uses: tirth8205/code-review-graph@v2.3.9
         with:
           github-token: ${{ secrets.GITHUB_TOKEN }}
+          # Sticky PR comment disabled: v2.3.9's author-detection step calls
+          # `gh api user`, which 403s with the default GITHUB_TOKEN and crashes
+          # the job (see PR discussion). Re-enable once upstream fixes it, or
+          # switch github-token to a personal-access-token secret.
+          comment: false
